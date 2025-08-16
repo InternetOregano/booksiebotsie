@@ -1,3 +1,4 @@
+import sys
 from stats import count_words, count_chars, sort_counts
 
 def get_book_text(filepath):
@@ -6,7 +7,7 @@ def get_book_text(filepath):
     return str(book)
 
 def main():
-    path = "./books/frankenstein.txt"
+    path = sys.argv[1]
     book_content = get_book_text(path)
     words = count_words(book_content)
     counts_dict = count_chars(book_content)
@@ -22,5 +23,8 @@ def main():
         if entry["char"].isalpha() is True:
             print(f"{entry["char"]}: {entry["num"]}")
 
-if __name__== "__main__":
+if __name__== "__main__" and len(sys.argv) < 2:
+    print("Usage: python3 main.py <path_to_book>")
+    sys.exit(1)
+else:
     main()
