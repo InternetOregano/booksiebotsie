@@ -10,7 +10,6 @@ def count_chars(text):
     lower_text = str(text.lower())
     char_count = {}
 
-
     #Loop through all characters in text and set the current character as variable
     for i in lower_text:
         # Check if current character is already in the dictionary
@@ -19,22 +18,21 @@ def count_chars(text):
             char_count[i] += 1
         else:
             # If character is not in dictionary update the key with the value 0 and increment at once
-            # get() method will only retrieve the value once the key is set and increment it by 1
+            # get() method will retrieve only the value once the key is set and increment it by 1
             char_count[i] = char_count.get(i, 0) + 1
 
     return char_count
 
-def print_report(counts):
+def sort_counts(counts):
     sorted_counts = []
-
+    for key in counts:
+        temp_dict = {}
+        temp_dict = {"char": key, "num": counts[key]}
+        sorted_counts.append(temp_dict)
     
+    def sort_by_count(key):
+        return key["num"]
 
+    sorted_counts.sort(reverse=True, key=sort_by_count)
 
-
-
-
-    # print("============ BOOKBOT ============")
-    # print("----------- Word Count ----------")
-    # print(f" Found {num_words} total words")
-    # print("--------- Character Count -------")
-    # print(f"{sorted_counts}")
+    return sorted_counts
