@@ -1,3 +1,23 @@
+import sys
+
+def ask_for_book():
+    if len(sys.argv) > 1:
+        bookpath = sys.argv[1]
+        return bookpath
+    else:
+        selected_book = input("Please type the name of the book:")
+        if selected_book != "":
+            bookpath = "./books/" + selected_book + ".txt"
+            return bookpath
+        else:
+            print("No book selected!")
+            sys.exit(1)
+
+def get_book_text(filepath):
+    with open(filepath) as f:
+        book = f.read()
+    return str(book)
+
 def count_words(text):
     num_words = 0
     words = text.split()
@@ -29,7 +49,7 @@ def sort_counts(counts):
         temp_dict = {}
         temp_dict = {"char": key, "num": counts[key]}
         sorted_counts.append(temp_dict)
-    
+
     def sort_by_count(key):
         return key["num"]
 

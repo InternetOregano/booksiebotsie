@@ -1,13 +1,7 @@
-import sys
-from stats import count_words, count_chars, sort_counts
-
-def get_book_text(filepath):
-    with open(filepath) as f:
-        book = f.read()
-    return str(book)
+from stats import *
 
 def main():
-    path = sys.argv[1]
+    path = ask_for_book()
     book_content = get_book_text(path)
     words = count_words(book_content)
     counts_dict = count_chars(book_content)
@@ -21,10 +15,7 @@ def main():
     #loop through list of dictionaries
     for entry in sorted_dict:
         if entry["char"].isalpha() is True:
-            print(f"{entry["char"]}: {entry["num"]}")
+            print(f"{entry['char']}: {entry['num']}")
 
-if __name__== "__main__" and len(sys.argv) < 2:
-    print("Usage: python3 main.py <path_to_book>")
-    sys.exit(1)
-else:
+if __name__== "__main__":
     main()
